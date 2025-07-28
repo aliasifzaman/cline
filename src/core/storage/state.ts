@@ -111,7 +111,7 @@ export async function getWorkspaceState(context: vscode.ExtensionContext, key: L
 
 export async function getAllExtensionState(context: vscode.ExtensionContext) {
 	const firstBatchStart = performance.now()
-	const [
+	let [
 		isNewUser,
 		welcomeViewCompleted,
 		apiKey,
@@ -274,7 +274,7 @@ export async function getAllExtensionState(context: vscode.ExtensionContext) {
 	const localClineRulesToggles = (await getWorkspaceState(context, "localClineRulesToggles")) as ClineRulesToggles
 
 	const secondBatchStart = performance.now()
-	const [
+	let [
 		chatSettings,
 		currentMode,
 		// Plan mode configurations
