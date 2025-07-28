@@ -419,6 +419,11 @@ export async function getAllExtensionState(context: vscode.ExtensionContext) {
 		await updateGlobalState(context, "planActSeparateModelsSetting", planActSeparateModelsSetting)
 	}
 
+	// Check for environment variable and override if present
+	if (process.env.CLINE_ANTHROPIC_API_KEY) {
+		apiKey = process.env.CLINE_ANTHROPIC_API_KEY
+	}
+
 	return {
 		apiConfiguration: {
 			apiKey,

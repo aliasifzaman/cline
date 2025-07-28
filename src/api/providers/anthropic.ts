@@ -22,12 +22,13 @@ export class AnthropicHandler implements ApiHandler {
 
 	private ensureClient(): Anthropic {
 		if (!this.client) {
-			if (!this.options.apiKey) {
+			const apiKey = process.env.CLINE_ANTHROPIC_API_KEY || this.options.apiKey;
+			if (!apiKey) {
 				throw new Error("Anthropic API key is required")
 			}
 			try {
 				this.client = new Anthropic({
-					apiKey: this.options.apiKey,
+					apiKey: apiKey,
 					baseURL: this.options.anthropicBaseUrl || undefined,
 				})
 			} catch (error) {
